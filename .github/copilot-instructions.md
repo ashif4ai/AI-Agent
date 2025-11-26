@@ -1,246 +1,190 @@
 # GitHub Copilot Instructions - AI-Driven Development Framework
 
-## 🎯 Project Identity
-This is an **AI-Driven Development Framework** — a universal, reusable template for AI-assisted software development that maintains context and tracks progress across multiple chat sessions.
-
-**Key Purpose:** Enable systematic, context-persistent development with any AI assistant (Copilot, Claude, ChatGPT, Gemini, etc.)
+**🎯 PRIMARY INSTRUCTION:** Read `.ai/00_START_HERE.md` first. This file supplements it.
 
 ---
 
-## 🚀 Every New Session: The 5-Minute Initialization
+## ⚡ Quick Start (2 minutes)
 
-Before writing any code or making decisions, **always** follow this sequence in order:
+You're working in an **AI-assisted development framework** designed for context persistence across multiple chat sessions.
 
-1. **Read** `.ai/00_START_HERE.md` — Quick orientation on current status
-2. **Read** `.ai/RULES.md` — Framework rules and workflows (your development bible)
-3. **Check** `.ai/MASTER_PROGRESS.md` — What phase/task are we on?
-4. **Review** `.ai/MEMORY.md` — Recent decisions and issues (at least last 5 entries)
-5. **Open** Current task file in `.ai/phases/phase-0X-name/tasks/TASK_XXX.md`
+### � On Every New Session:
+1. **Go to:** `.ai/00_START_HERE.md`
+2. **Follow the initialization steps** (it takes 5 minutes)
+3. **Announce project status** using the template provided
+4. **Then start working**
 
-**After initialization, announce:**
-```
-📊 PROJECT STATUS
-Project: [Name from PROJECT_CONTEXT.md]
-Phase: [X/Y] - [Phase Name]  
-Task: [XXX] - [Task Name]
-Status: [Current Status]
-Progress: [Overall %]
-
-Ready to work. What would you like to do?
-```
-
-This isn't optional — context persistence depends on reading these files.
+**That's it.** The `.ai/` folder contains everything you need.
 
 ---
 
-## 📁 Critical File Locations & When to Read Them
+## 📁 File Structure Overview
 
-| File | When to Read | Why |
-|------|--------------|-----|
-| `.ai/00_START_HERE.md` | Every session start | Orients you to current context |
-| `.ai/RULES.md` | Session start (refresh) | Contains all workflow rules |
-| `.ai/MASTER_PROGRESS.md` | Before each task | Know what phase/task you're on |
-| `.ai/MEMORY.md` | Session start (recent entries) | Know past decisions/issues |
-| `.ai/PROJECT_CONTEXT.md` | On first session only | Understand project goals |
-| `.ai/phases/phase-0X-name/PHASE_STATUS.md` | Before phase work | Track tasks in current phase |
-| Current task file | When starting work | Get detailed task requirements |
-| `.ai/planning/TECH_STACK.md` | Before adding dependencies | Check approved technologies |
+All project coordination lives in `.ai/`:
 
-**Note:** This framework IS a template project. When you start a real project, you'll follow the exact same file structure above, but with your project's data filled in. The framework itself demonstrates all the patterns you'll replicate.
+| Folder | Purpose |
+|--------|---------|
+| `.ai/planning/` | Architecture, tech stack, design decisions |
+| `.ai/requirements/` | Full requirements and phase specifications |
+| `.ai/phases/` | Active phase folders with tasks and progress |
+| `.ai/templates/` | Copy these to create new phases/tasks |
+
+**Source code** lives in `src/`, `tests/`, `docs/` — separate from metadata.
 
 ---
 
-## 🔄 The Task Lifecycle: What Success Looks Like
+## 🧠 Core Framework Philosophy
 
-Every task follows this flow:
+This framework works through **three disciplines:**
+
+### 1. **Initialization Protocol**
+Every session starts by reading `.ai/00_START_HERE.md`. This establishes context and ensures you know:
+- What phase/task you're on
+- What changed since last session
+- Any blockers or decisions
+
+### 2. **Documentation Discipline**
+After every task, **immediately** update (in order):
+- ✅ Task file (status, date)
+- ✅ `PHASE_STATUS.md` (task count)
+- ✅ `MASTER_PROGRESS.md` (overall %)
+- ✅ `MEMORY.md` (if decisions made)
+
+**Why?** Next session's context depends on these files being current.
+
+### 3. **Testing Requirement**
+Never mark a task "Completed" without:
+- Creating `TEST_PLAN.md` with specific test steps
+- Having **user validate tests** (critical step)
+- Updating all tracking files after user confirms
+
+---
+
+## 🏗️ Architecture at a Glance
+
+### Three Documentation Layers:
+1. **Planning:** `.ai/planning/` — Design decisions, tech choices
+2. **Requirements:** `.ai/requirements/` — What each phase delivers
+3. **Execution:** `.ai/phases/` — Progress tracking, task details
+
+### Core Decisions (Why This Structure Works):
+- **Separation of concerns** prevents planning from mixing with execution status
+- **File-based system** works with any AI (GitHub Copilot, Claude, ChatGPT, Gemini)
+- **Task-based breakdown** (2-8 hours each) makes progress measurable and testable
+- **MEMORY.md as bridge** preserves decisions across sessions
+- **.ai/ folder separate from src/** keeps metadata organized, code clean
+
+See `.ai/planning/ARCHITECTURE.md` for detailed system design.
+
+---
+
+## 📊 The Task Lifecycle
 
 ```
 Not Started → In Progress → Testing → Completed
 ```
 
-### When Starting a Task:
-1. Update task file: change status to "In Progress"
-2. Update `.ai/phases/phase-0X/PHASE_STATUS.md` with start time
-3. Update `.ai/MASTER_PROGRESS.md` 
-4. Implement code with meaningful comments
-5. Log any decisions in `.ai/MEMORY.md` as you go
+### Starting a Task:
+1. Update task file status to "In Progress"
+2. Update `PHASE_STATUS.md` and `MASTER_PROGRESS.md`
+3. Implement code with comments
+4. Log decisions in `MEMORY.md`
 
-### When Finishing a Task:
-1. **Generate TEST_PLAN.md** with manual test steps and expected results
-2. Change task status to "Testing"
-3. Provide clear test instructions to user
-4. **Wait for user to validate tests** (don't skip this step)
-5. After user confirms:
-   - Update task: status = "Completed", add completion date
-   - Update `PHASE_STATUS.md`: increment completed task count
-   - Update `MASTER_PROGRESS.md`: recalculate percentages
-   - Update `MEMORY.md` with learnings (if applicable)
+### Finishing a Task:
+1. Create `TEST_PLAN.md` (prerequisites, steps, expected results, edge cases)
+2. Mark task status "Testing"
+3. **User validates tests** (don't skip this)
+4. After user confirms: update all tracking files
+5. Mark status "Completed"
 
 ---
 
-## 🧠 The Memory System: How to Preserve Context
+## 💾 MEMORY.md: Your Session Bridge
 
-The `.ai/MEMORY.md` file is your session bridge. **Always log**:
+Log **every decision** in `.ai/MEMORY.md`. Next session reads it and stays in context.
 
-### Technical Decisions
-Add to "Key Decisions" table when you make a choice:
+### What to Log:
+
+**Technical Decisions** (e.g., framework choice):
 ```markdown
-| 2025-11-26 | Use framework templates for structure | Ensures consistency across all projects | Simplifies onboarding, faster setup | AI |
-| 2025-11-26 | Store all phase/task tracking in .ai/ | Keeps source code clean, centralizes metadata | Easy to find progress info | AI |
-| 2025-11-26 | Require user testing before task completion | Catches implementation issues early | Prevents bugs from compounding | AI |
+| 2025-11-26 | Use framework templates for structure | Ensures consistency | Simplifies onboarding |
 ```
 
-### Issues You Encounter
-Add to "Issues and Solutions" when you hit a blocker:
+**Issues & Solutions** (e.g., when you hit a blocker):
 ```markdown
-| 2025-11-26 | Task marked complete but user testing not done | Established testing requirement before completion | MEMORY.md, RULES.md | Always wait for user validation |
-| 2025-11-26 | Phase folder creation unclear for first-time users | Created templates and step-by-step in RULES.md | All phase files | Reference RULES.md for sequence |
+| 2025-11-26 | Phase folder unclear for users | Created templates in RULES.md | All users can follow |
 ```
 
-### New Dependencies
-Add to "Dependencies Installed" whenever you `npm install` or add packages:
+**Dependencies Installed:**
 ```markdown
-| 2025-11-26 | Framework templates | N/A | Project scaffolding structure | Phase 0 |
-| 2025-11-26 | GitHub Actions CI/CD | N/A | Automated testing/deployment | Phase 0 |
+| 2025-11-26 | React 18.2 | UI framework for frontend | Phase 1 |
 ```
 
-### Database/API/Config Changes
-Log immediately in appropriate section if you modify structure or endpoints:
+**Database/API/Config Changes:**
 ```markdown
-| 2025-11-26 | .ai/ directory structure | Added `.ai/planning/` for architecture docs | Centralizes design decisions | Phase 0 |
-| 2025-11-26 | MEMORY.md sections | Added "Learnings & Best Practices" section | Improved knowledge retention | Phase 0 |
+| 2025-11-26 | users table | Added role column | Updated schema in DATABASE_SCHEMA.md |
 ```
-
-**Why?** Next session, the AI (you) reads this and knows the context. Without it, history is lost.
-
-**Real-World Examples from This Framework:**
-- Decision: "Chose three-layer doc structure (Planning/Requirements/Execution)" → Makes it clear why files are organized this way
-- Issue: "First-time users confused about which file to read first" → Solution: "Created 00_START_HERE.md as entry point"
-- Lesson: "Context persistence requires disciplined file updates, not AI intelligence" → Apply this to every project you work on
 
 ---
 
-## ⚙️ Tech Stack Management: Before You Add New Tech
-
-Before installing a package or adopting a new tool:
+## 🛠️ Before Adding New Technology
 
 1. **Check** `.ai/planning/TECH_STACK.md` — Is it already listed?
-2. **If new:** Log decision in `.ai/MEMORY.md` → "Key Decisions" table
-3. **Add to** `.ai/planning/TECH_STACK.md` with justification
-4. **Only then** proceed with installation
+2. **If new:** Log decision in `MEMORY.md` with rationale
+3. **Update** `TECH_STACK.md` with justification
+4. **Then** proceed with installation
 
-This prevents tech sprawl and ensures coherent architecture.
-
----
-
-## 🧪 Testing Requirements: Non-Negotiable
-
-After implementing a task:
-
-1. **Create `TEST_PLAN.md`** in the task folder with:
-   - Prerequisites (setup, test data, environment)
-   - Manual test steps (numbered, specific)
-   - Expected results (what should happen)
-   - Edge cases (boundary conditions, error scenarios)
-   - Pass/fail criteria
-
-2. **User must manually test** — This validates your implementation
-3. **Only mark "Completed"** after user confirms tests pass
-
-No shortcuts. Testing is how we catch issues before they compound.
+This prevents tech sprawl and keeps the stack coherent.
 
 ---
 
-## 📝 Mandatory Updates After Every Task
+## 🚨 When Things Go Wrong
 
-After a task is completed, **in this order**:
+### If Blocked:
+1. **Log immediately** in `MEMORY.md` → "Issues and Solutions"
+2. Mark task as "Blocked" in task file
+3. Update `PHASE_STATUS.md` with blocker note
+4. Propose solution to user with full context
 
-1. ✅ Task file: Update status, add completion date, add notes
-2. ✅ `PHASE_STATUS.md`: Increment completed task count, recalculate %
-3. ✅ `MASTER_PROGRESS.md`: Update current task, recalculate overall %
-4. ✅ `MEMORY.md`: Log any decisions/issues (if applicable)
-5. ✅ Tech files: Update `TECH_STACK.md`, `DATABASE_SCHEMA.md`, `API_DESIGN.md` (if modified)
-
-**Don't skip this.** These updates are how the next session knows what happened.
-
----
-
-## 🏗️ Project Architecture Overview
-
-This framework maintains three parallel documentation systems:
-
-### 1. **Planning Layer** (`.ai/planning/`)
-- `ARCHITECTURE.md` — How components interact
-- `TECH_STACK.md` — Technology choices and rationale
-- `DATABASE_SCHEMA.md` — Data model and relationships
-- `API_DESIGN.md` — API endpoints and specifications
-
-### 2. **Requirements Layer** (`.ai/requirements/`)
-- `MAIN_REQUIREMENTS.md` — Full project requirements
-- `phases/PHASE_0X_[NAME].md` — What each phase must deliver
-
-### 3. **Execution Layer** (`.ai/phases/phase-0X-name/`)
-- `PHASE_STATUS.md` — Progress tracking within phase
-- `tasks/TASK_XXX_NAME.md` — Individual task details and status
-- `testing/` — Test plans and results per phase
-
-**Why this structure?** Separation of concerns. Planning doesn't get tangled with execution status.
-
-### Core Framework Decisions (Recorded in MEMORY.md When This Was Built)
-
-| Decision | Rationale |
-|----------|-----------|
-| **Three-layer documentation** | Planning → Requirements → Execution prevents confusion between design intent and progress tracking |
-| **Task-based breakdown** | Each task is 2-8 hours, independently testable, validatable before moving forward |
-| **Mandatory file updates after each task** | Context persistence across sessions depends on disciplined documentation, not AI intelligence |
-| **User validation before "Completed"** | Catches issues early; prevents bugs from compounding into next phase |
-| **MEMORY.md as session bridge** | Records decisions, issues, and learnings so next AI session has full context |
-| **.ai/ folder separate from src/** | Keeps project metadata organized; source code stays clean |
-| **Universal compatibility** | Framework works with any AI (Copilot, Claude, ChatGPT, Gemini) because it's file-based, not API-dependent |
-
-These decisions guided the framework's design. When you start your own project using this template, you'll create similar decision entries in MEMORY.md for YOUR project's choices.
-
----
-
-## 🚨 Error Recovery: When Things Go Wrong
-
-### If You Get Stuck:
-1. **Document immediately** in `.ai/MEMORY.md` → "Issues and Solutions"
-2. **Mark task** as "Blocked" in task file
-3. **Update** `PHASE_STATUS.md` with blocker notation
-4. **Propose solution** to user with full context
-5. **Wait for approval** on major changes
-6. **Implement fix** and remove blocker status
-
-### If You Discover a Bug:
+### If You Find a Bug:
 1. Log in `MEMORY.md` with timestamp and details
-2. Create fix (or mark task as "Blocked")
-3. Add regression test case to `TEST_PLAN.md`
-4. Document lesson learned
+2. Create fix (or mark task "Blocked")
+3. Add regression test to `TEST_PLAN.md`
+4. Document the lesson learned
 
 ---
 
-## 💡 Code Standards for This Project
+## ✅ File Update Checklist (After Every Task)
 
-### General Principles
-- **Clean, readable code** — Variable/function names are self-documenting
-- **DRY** — Don't Repeat Yourself; extract to functions/components
-- **Comments for complexity** — Explain the "why", not the "what"
-- **Consistent formatting** — Use project's lint rules
+- [ ] Task file: status updated, completion date added
+- [ ] `PHASE_STATUS.md`: task count incremented, % recalculated
+- [ ] `MASTER_PROGRESS.md`: current task updated, overall % recalculated
+- [ ] `MEMORY.md`: decisions/issues logged (if applicable)
 
-### Error Handling
+**This is non-negotiable.** Context persistence depends on disciplined file updates.
+
+---
+
+## 💡 Code Standards
+
+### General:
+- Clean, readable code — names are self-documenting
+- DRY principle — extract to functions/components
+- Comments explain *why*, not *what*
+- Consistent formatting per project rules
+
+### Error Handling:
 - Try-catch blocks around risky operations
 - Meaningful error messages (not generic)
 - Log errors with context
-- Graceful degradation (don't crash the app)
-- User-friendly messages in UI
+- Graceful degradation
 
-### Security (Minimum Standards)
-- **Never hardcode** credentials or secrets
-- **Validate all inputs** from users/external sources
-- **Sanitize** data before storing or displaying
-- **Use environment variables** for configuration
-- **Implement auth/authz** properly before deployment
+### Security:
+- Never hardcode credentials/secrets
+- Validate all user inputs
+- Sanitize data before storing
+- Use environment variables for config
+- Implement auth/authz properly
 
 ---
 
@@ -263,101 +207,43 @@ Project % = (Sum of all Phase % × Phase Weight) / 100
 
 ---
 
-## ✅ Completion Checklist: Task is Done When
+## 🎓 Key Files Reference
 
-- [ ] Code implemented and working
-- [ ] Comments added for complex logic
-- [ ] `TEST_PLAN.md` created with specific test steps
-- [ ] User manually validated tests
-- [ ] Task file updated (status = "Completed", date filled)
-- [ ] `PHASE_STATUS.md` updated (task count incremented)
-- [ ] `MASTER_PROGRESS.md` updated (progress recalculated)
-- [ ] `MEMORY.md` updated (decisions/issues logged, if any)
+**Read these to understand the project:**
+- **`.ai/PROJECT_CONTEXT.md`** — What is this project? Who uses it?
+- **`.ai/RULES.md`** — Complete framework rules
+- **`.ai/planning/ARCHITECTURE.md`** — How components work together
+- **`.ai/planning/TECH_STACK.md`** — Technology choices and justification
 
-### Phase is Complete When
-- [ ] All tasks completed and tested
-- [ ] `PHASE_STATUS.md` shows 100%
-- [ ] Phase documentation complete
-- [ ] `MASTER_PROGRESS.md` updated
-- [ ] Ready to move to next phase
+**Update these after work:**
+- **Current task file** — Status, completion date, notes
+- **`.ai/MEMORY.md`** — Decisions, issues, learnings
+- **`.ai/phases/phase-XX/PHASE_STATUS.md`** — Task progress
+- **`.ai/MASTER_PROGRESS.md`** — Overall project metrics
 
 ---
 
-## 🗣️ Communication Patterns
+## ❓ Common Questions
 
-### Session Start
-Announce current status with the 5-line status summary.
+**Q: Where do I start?**  
+A: `.ai/00_START_HERE.md` — read it first, every session.
 
-### During Work
-- Explain what you're implementing
-- Ask for clarification when requirements are ambiguous
-- Propose solutions before making major architectural changes
-- Report blockers immediately
+**Q: How do I know what to do?**  
+A: Open your current task file in `.ai/phases/phase-XX/tasks/TASK_XXX.md`
 
-### Session End
-```
-📋 SESSION SUMMARY
-✅ Completed: [List tasks]
-📝 Updated: [List files]
-⏭️ Next Steps: [What's coming]
-🚨 Blockers: [Any blockers, or "None"]
-```
+**Q: What if I'm confused?**  
+A: Read `.ai/RULES.md` — it has everything.
+
+**Q: How do I preserve context between sessions?**  
+A: Update `.ai/MEMORY.md` with every decision/issue/learning.
 
 ---
 
-## ⚠️ Common Pitfalls to Avoid
+## 🚀 You're Ready
 
-### ❌ DON'T
-- Skip file initialization at session start
-- Mark tasks "Completed" without user testing
-- Add new tech without logging in `MEMORY.md`
-- Forget to update progress files
-- Make architectural decisions without documenting rationale
-- Lose context by not reading `MEMORY.md`
-
-### ✅ DO
-- Read framework files every session
-- Wait for user validation on tests
-- Log all decisions and issues
-- Update files systematically after each task
-- Ask for approval on major changes
-- Use this document as your reference
-
----
-
-## 🎓 Quick Reference: Files You'll Edit Most
-
-1. **Current task file** — Status updates, implementation details
-2. **`.ai/MEMORY.md`** — Decisions, issues, learnings
-3. **`.ai/phases/phase-0X/PHASE_STATUS.md`** — Task progress
-4. **`.ai/MASTER_PROGRESS.md`** — Overall metrics
-5. **`.ai/planning/` files** — Architecture, tech stack, API changes
-
----
-
-## 📌 Key Files to Understand First
-
-- **`.ai/PROJECT_CONTEXT.md`** — What is this project? Who uses it? What's success?
-- **`.ai/planning/ARCHITECTURE.md`** — How do components work together?
-- **`.ai/planning/TECH_STACK.md`** — What technologies are approved?
-- **Current phase folder** — What are we building this phase?
-
-Read these before writing production code.
-
----
-
-## 🚀 Start Working
-
-Once you've read the initialization files and understand current status:
-
-1. Open the current task file
-2. Follow its acceptance criteria
-3. Implement with comments
-4. Create test plan
-5. Wait for user validation
-6. Mark complete and update all tracking files
-
-**Remember:** The framework works because context is preserved, not because of AI capability. Follow the system, and projects progress steadily.
+1. **Go to:** `.ai/00_START_HERE.md`
+2. **Follow it exactly**
+3. **Come back here** if you have questions
 
 ---
 
