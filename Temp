@@ -1,0 +1,50 @@
+Project Name: [YOUR PROJECT NAME]
+
+Project Type: Web App
+
+Project Summary: 
+[2-3 sentences describing what your project does and its purpose]
+
+
+Key Features (High-Level):
+1. [Feature 1]
+
+Technology Preferences :
+- Frontend: .Next JS
+- Backend: Node.js
+- Database: Microsoft SQL Server.
+
+
+Additional Context: NA
+
+**Detailed Requirements (paste your requirements document or describe in detail):**
+See the attached Project Flow.pdf
+
+---
+
+**Your Task:**
+
+1. Analyze my project requirements
+2. Format them according to the \"Reusable AI-Driven Development Framework\"
+3. Create a properly structured MAIN_REQUIREMENTS.md file
+4. Break the project into logical phases (3-5 phases typically)
+5. Create phase requirement files for each phase
+6. Provide me with:
+   - Complete directory structure to create
+   - All core .md files populated with my project details
+   - PROJECT_CONTEXT.md filled out
+   - Initial TECH_STACK.md recommendations
+   - Suggested phase breakdown with time estimates
+   - Initial MASTER_PROGRESS.md setup
+
+5. Format everything as ready-to-use .md files that I can copy directly into my project.
+
+**Deliverable Format:**
+- Provide each file as a complete markdown code block
+- Include file path as comment above each file
+- Make sure all cross-references between files are correct
+- Ensure RULES.md is customized with correct file paths for my project
+
+---
+
+**END OF PROMPT**
